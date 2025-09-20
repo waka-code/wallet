@@ -1,0 +1,421 @@
+{
+  "info": {
+    "name": "Virtual Wallet API",
+    "description": "Complete API collection for the Virtual Wallet system with all endpoints for client registration, wallet operations, and payments.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "virtual-wallet-api",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    }
+  },
+  "variable": [
+    {
+      "key": "api_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "test_document",
+      "value": "12345678",
+      "type": "string"
+    },
+    {
+      "key": "test_cellphone",
+      "value": "1234567890",
+      "type": "string"
+    },
+    {
+      "key": "session_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Client Management",
+      "item": [
+        {
+          "name": "Register Client",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 201', function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test('Response has success true', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.success).to.be.true;",
+                  "});",
+                  "",
+                  "pm.test('Response contains client data', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.data).to.have.property('id');",
+                  "    pm.expect(jsonData.data).to.have.property('document');",
+                  "    pm.expect(jsonData.data).to.have.property('email');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"document\": \"{{test_document}}\",\n  \"names\": \"John Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"cellphone\": \"{{test_cellphone}}\"\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/api/clients/register",
+              "host": ["{{api_url}}"],
+              "path": ["api", "clients", "register"]
+            },
+            "description": "Register a new client in the system. Creates both client record and associated wallet."
+          }
+        }
+      ],
+      "description": "Endpoints for managing client registration and information."
+    },
+    {
+      "name": "2. Wallet Operations",
+      "item": [
+        {
+          "name": "Recharge Wallet",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has success true', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.success).to.be.true;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"document\": \"{{test_document}}\",\n  \"cellphone\": \"{{test_cellphone}}\",\n  \"amount\": 100.00\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/api/wallet/recharge",
+              "host": ["{{api_url}}"],
+              "path": ["api", "wallet", "recharge"]
+            },
+            "description": "Add funds to an existing wallet. Requires document and cellphone verification."
+          }
+        },
+        {
+          "name": "Get Balance",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has success true', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.success).to.be.true;",
+                  "});",
+                  "",
+                  "pm.test('Response contains balance', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.data).to.have.property('balance');",
+                  "    pm.expect(jsonData.data.balance).to.be.a('number');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/api/wallet/balance?document={{test_document}}&cellphone={{test_cellphone}}",
+              "host": ["{{api_url}}"],
+              "path": ["api", "wallet", "balance"],
+              "query": [
+                {
+                  "key": "document",
+                  "value": "{{test_document}}"
+                },
+                {
+                  "key": "cellphone",
+                  "value": "{{test_cellphone}}"
+                }
+              ]
+            },
+            "description": "Retrieve current wallet balance. Requires document and cellphone verification."
+          }
+        }
+      ],
+      "description": "Endpoints for wallet balance operations - recharging and checking balance."
+    },
+    {
+      "name": "3. Payment Operations",
+      "item": [
+        {
+          "name": "Create Payment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has success true', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.success).to.be.true;",
+                  "});",
+                  "",
+                  "pm.test('Response contains session ID', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.data).to.have.property('sessionId');",
+                  "    ",
+                  "    // Store session ID for use in confirm payment",
+                  "    pm.collectionVariables.set('session_id', jsonData.data.sessionId);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"document\": \"{{test_document}}\",\n  \"cellphone\": \"{{test_cellphone}}\",\n  \"amount\": 25.00\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/api/payment/create",
+              "host": ["{{api_url}}"],
+              "path": ["api", "payment", "create"]
+            },
+            "description": "Create a new payment request. Sends 6-digit token to registered email and returns session ID for confirmation."
+          }
+        },
+        {
+          "name": "Confirm Payment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Response has success field', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('success');",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    pm.test('Payment confirmed successfully', function () {",
+                  "        const jsonData = pm.response.json();",
+                  "        pm.expect(jsonData.success).to.be.true;",
+                  "        pm.expect(jsonData.data).to.have.property('newBalance');",
+                  "    });",
+                  "} else {",
+                  "    pm.test('Payment confirmation failed with proper error', function () {",
+                  "        const jsonData = pm.response.json();",
+                  "        pm.expect(jsonData.success).to.be.false;",
+                  "        pm.expect(jsonData).to.have.property('error');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionId\": \"{{session_id}}\",\n  \"token\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/api/payment/confirm",
+              "host": ["{{api_url}}"],
+              "path": ["api", "payment", "confirm"]
+            },
+            "description": "Confirm a payment using session ID and 6-digit token received via email. Note: Replace '123456' with actual token from email."
+          }
+        }
+      ],
+      "description": "Endpoints for payment processing - creating payment requests and confirming them with email tokens."
+    },
+    {
+      "name": "4. System Health",
+      "item": [
+        {
+          "name": "API Gateway Health Check",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response contains status OK', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql('OK');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/health",
+              "host": ["{{api_url}}"],
+              "path": ["health"]
+            },
+            "description": "Check if the API Gateway service is running and healthy."
+          }
+        },
+        {
+          "name": "Database Service Health Check",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response contains status OK', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql('OK');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["health"]
+            },
+            "description": "Check if the Database service is running and healthy. This bypasses the API Gateway."
+          }
+        },
+        {
+          "name": "API Documentation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response contains API information', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('name');",
+                  "    pm.expect(jsonData).to.have.property('endpoints');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/api",
+              "host": ["{{api_url}}"],
+              "path": ["api"]
+            },
+            "description": "Get API documentation and available endpoints."
+          }
+        }
+      ],
+      "description": "Health check endpoints for monitoring system status."
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Set timestamp for requests",
+          "pm.collectionVariables.set('timestamp', new Date().toISOString());"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Global test to check response time",
+          "pm.test('Response time is less than 5000ms', function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+          "});",
+          "",
+          "// Global test to check response format",
+          "pm.test('Response is JSON', function () {",
+          "    pm.response.to.be.json;",
+          "});"
+        ]
+      }
+    }
+  ]
+}

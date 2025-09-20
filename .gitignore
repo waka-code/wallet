@@ -91,12 +91,6 @@ public
 # Windows system files
 Thumbs.db
 
-# dotenv environment variables file
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
 # SvelteKit build output
 .svelte-kit
@@ -117,4 +111,3 @@ build/
 .ipynb_checkpoints
 
 # Postman
-postman/
