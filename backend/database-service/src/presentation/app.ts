@@ -67,7 +67,7 @@ export const createApp = () => {
   const walletController = createWalletController(rechargeWalletUseCase, getBalanceUseCase);
   const paymentController = createPaymentController(createPaymentUseCase, confirmPaymentUseCase);
 
-  app.get('/health', (req, res) => {
+  app.get('/health', (_req, res) => {
     res.json({
       status: 'OK',
       timestamp: new Date().toISOString(),

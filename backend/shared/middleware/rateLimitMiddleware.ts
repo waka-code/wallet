@@ -17,7 +17,7 @@ export const configureRateLimit = (app: Application) => {
     }
   });
 
-  app.use(generalLimiter as any);
+  app.use(generalLimiter);
 };
 
 export const createPaymentLimiter = () => rateLimit({

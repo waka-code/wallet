@@ -68,7 +68,6 @@ export const apiResponseSchema = z.object({
   code: z.number()
 });
 
-// Type exports
 export type RegisterClientRequest = z.infer<typeof registerClientSchema>;
 export type RechargeWalletRequest = z.infer<typeof rechargeWalletSchema>;
 export type GetBalanceRequest = z.infer<typeof getBalanceSchema>;

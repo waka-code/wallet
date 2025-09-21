@@ -72,7 +72,6 @@ export const confirmPaymentSchema = z.object({
     .regex(/^\d{6}$/, 'Token must contain only digits')
 });
 
-// Type exports
 export type RegisterClientFormData = z.infer<typeof registerClientSchema>;
 export type RechargeWalletFormData = z.infer<typeof rechargeWalletSchema>;
 export type GetBalanceFormData = z.infer<typeof getBalanceSchema>;

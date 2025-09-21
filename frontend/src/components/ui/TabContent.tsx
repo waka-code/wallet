@@ -40,7 +40,6 @@ export const TabContent: React.FC<TabContentProps> = ({
                 tab={setActiveTab}
                 onPaymentConfirmed={() => {
                   setSessionId("");
-                  // setActiveTab("balance");
                 }}
               />
             );

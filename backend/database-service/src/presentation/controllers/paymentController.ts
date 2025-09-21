@@ -15,7 +15,7 @@ export const createPaymentController = (
         res.status(400).json({
           success: false,
           message: 'Validation failed',
-          error: validationResult.error.errors.map((err: any) => err.message).join(', '),
+          error: validationResult.error.errors.map((err) => err.message).join(', '),
           code: 400
         });
         return;
@@ -42,13 +42,12 @@ export const createPaymentController = (
         res.status(400).json({
           success: false,
           message: 'Validation failed',
-          error: validationResult.error.errors.map((err: any) => err.message).join(', '),
+          error: validationResult.error.errors.map((err) => err.message).join(', '),
           code: 400
         });
         return;
       }
 
-      // Execute use case
       const result = await confirmPaymentUseCase.execute(validationResult.data);
       
       res.status(result.code).json(result);

@@ -15,7 +15,7 @@ export const configureBodyParsing = (app: Application) => {
 
  app.use(express.json({
   limit: '10mb',
-  verify: (req, res, buf) => {
+  verify: (_req, _res, buf) => {
    try {
     JSON.parse(buf.toString());
    } catch (e) {

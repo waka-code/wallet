@@ -11,7 +11,7 @@ export const createWalletController = (databaseService: DatabaseService) => ({
         res.status(400).json({
           success: false,
           message: 'Validation failed',
-          error: validationResult.error.errors.map((err: any) => err.message).join(', '),
+          error: validationResult.error.errors.map((err) => err.message).join(', '),
           code: 400
         });
         return;
@@ -38,7 +38,7 @@ export const createWalletController = (databaseService: DatabaseService) => ({
         res.status(400).json({
           success: false,
           message: 'Validation failed',
-          error: validationResult.error.errors.map((err: any) => err.message).join(', '),
+          error: validationResult.error.errors.map((err) => err.message).join(', '),
           code: 400
         });
         return;

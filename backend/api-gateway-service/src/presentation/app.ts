@@ -13,7 +13,6 @@ import { validateContentType } from '@epayco/shared-types';
 import { errorHandler } from '@epayco/shared-types';
 import { notFoundHandler } from '@epayco/shared-types';
 
-
 export const createApp = () => {
   const app:Application = express();
 

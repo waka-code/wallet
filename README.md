@@ -121,3 +121,11 @@ wallet/
 - Node.js, Express, TypeScript
 - React, Vite
 - Postman (pruebas manuales)
+
+---
+
+## Variables de Entorno
+
+Cada microservicio requiere su propio archivo `.env`. Usa los archivos `.env.example` como referencia.
+
+---

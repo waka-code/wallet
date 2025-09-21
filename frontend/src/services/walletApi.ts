@@ -13,7 +13,6 @@ import type {
 import { apiClient } from './Client';
 import { handleApiError } from '../utils/handleApiError';
 
-
 export const walletApi = {
   async registerClient(data: RegisterClientData): Promise<ApiResponse<Client>> {
     try {

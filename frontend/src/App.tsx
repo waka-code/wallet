@@ -14,7 +14,6 @@ const App: React.FC = () => {
     setActiveTab('confirm');
   }, []);
 
-
   return (
     <div className="min-h-screen h-full bg-gray-50">
       <header className="bg-white shadow-sm border-b border-gray-200">
@@ -53,7 +52,6 @@ const App: React.FC = () => {
         </div>
       </nav>
 
-      {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-1/3">
@@ -86,7 +84,6 @@ const App: React.FC = () => {
           </div>
         </div>
       </main>
-
     </div>
   );
 };
