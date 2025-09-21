@@ -38,7 +38,7 @@
 >    Es fundamental seguir estos pasos para que el proyecto se levante correctamente en tu entorno local.
 >
 > **No necesitas configurar una base de datos propia:**  
-> El proyecto ya utiliza una instancia de MongoDB Atlas, por lo que puedes ejecutar y probar la aplicación sin realizar configuraciones adicionales de base de datos.
+> El proyecto ya utiliza una instancia de MongoDB Atlas, por lo que puedes ejecutar y probar la aplicación sin realizar configuraciones adicionales de base de datos. Sin embargo, si prefieres usar tu propia instancia de MongoDB, simplemente modifica los archivos `.env` en `backend/database-service` con tus credenciales y URL personalizadas.
 
 Virtual Wallet es una solución de billetera virtual que permite la gestión de clientes, pagos y recargas, implementada bajo una arquitectura de microservicios y con frontend desarrollado en React.
 
