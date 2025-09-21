@@ -4,6 +4,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
   required?: boolean;
+  disabled?: boolean;
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -12,6 +13,7 @@ export const Input: React.FC<InputProps> = ({
   required,
   className = '',
   id,
+  disabled,
   ...props
 }) => {
   const inputId = id || label?.toLowerCase().replace(/\s+/g, '-');
@@ -29,7 +31,10 @@ export const Input: React.FC<InputProps> = ({
       )}
       <input
         id={inputId}
-        className={`block w-full rounded-lg bg-white border border-gray-300 px-4 py-2 text-gray-900 text-base focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition ${error ? 'border-error-500 focus:ring-error-500 focus:border-error-500' : ''} ${className}`}
+        className={`block w-full rounded-lg bg-white border border-gray-300 px-4 py-2 text-gray-900 text-base focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition
+    ${error ? 'border-error-500 focus:ring-error-500 focus:border-error-500' : ''}
+    ${disabled ? 'bg-gray-500 cursor-not-allowed opacity-70' : ''}
+    ${className}`}
         {...props}
       />
       {error && (

@@ -1,5 +1,4 @@
 import { UserPlus } from 'lucide-react';
-
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
@@ -11,7 +10,7 @@ export interface RegisterClientProps {
   onSuccess?: (client: Client) => void;
 }
 
-export const RegisterClient: React.FC<RegisterClientProps> = ({ onSuccess }) => {
+const RegisterClient: React.FC<RegisterClientProps> = ({ onSuccess }) => {
   const {
     isLoading,
     alert,
@@ -91,3 +90,5 @@ export const RegisterClient: React.FC<RegisterClientProps> = ({ onSuccess }) => 
     </Card>
   );
 };
+
+export default RegisterClient;

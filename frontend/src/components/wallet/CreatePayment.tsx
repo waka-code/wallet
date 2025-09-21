@@ -9,7 +9,7 @@ export interface CreatePaymentProps {
   onPaymentCreated?: (sessionId: string) => void;
 }
 
-export const CreatePayment: React.FC<CreatePaymentProps> = ({ onPaymentCreated }) => {
+const CreatePayment: React.FC<CreatePaymentProps> = ({ onPaymentCreated }) => {
   const {
     isLoading,
     alert,
@@ -98,3 +98,5 @@ export const CreatePayment: React.FC<CreatePaymentProps> = ({ onPaymentCreated }
     </Card>
   );
 };
+
+export default CreatePayment;

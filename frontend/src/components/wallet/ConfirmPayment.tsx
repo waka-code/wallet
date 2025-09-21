@@ -4,15 +4,17 @@ import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Alert } from '../ui/Alert';
 import { ucConfirmPayment } from '../hooks/ucConfirmPayment';
+import type { TabType } from '../../types/TabType';
 
 export interface ConfirmPaymentProps {
   initialSessionId?: string;
   onPaymentConfirmed?: (newBalance: number) => void;
+  tab?: (tab: TabType) => void;
 }
-
-export const ConfirmPayment: React.FC<ConfirmPaymentProps> = ({
+const ConfirmPayment: React.FC<ConfirmPaymentProps> = ({
   initialSessionId,
-  onPaymentConfirmed
+  onPaymentConfirmed,
+  tab
 }) => {
 
   const {
@@ -57,6 +59,14 @@ export const ConfirmPayment: React.FC<ConfirmPaymentProps> = ({
             <p className="text-sm text-success-700">
               <span className="font-medium">New Balance:</span> ${paymentResult.newBalance.toFixed(2)}
             </p>
+            {tab && (
+              <span
+                onClick={() => tab("balance")}
+                className="mt-2 text-sm text-green-600 cursor-pointer hover:text-green-800"
+              >
+                go to balance
+              </span>
+            )}
           </div>
         )}
 
@@ -76,6 +86,7 @@ export const ConfirmPayment: React.FC<ConfirmPaymentProps> = ({
             type="text"
             placeholder="Enter the session ID from payment creation"
             required
+            disabled={true}
             error={errors.sessionId?.message}
             {...register('sessionId')}
           />
@@ -103,3 +114,6 @@ export const ConfirmPayment: React.FC<ConfirmPaymentProps> = ({
     </Card>
   );
 };
+
+
+export default ConfirmPayment;

@@ -1,17 +1,15 @@
 import { Plus } from 'lucide-react';
-
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Alert } from '../ui/Alert';
-
 import { ucRechargeWallet } from '../hooks/ucRechargeWallet';
 
 export interface RechargeWalletProps {
   onSuccess?: () => void;
 }
 
-export const RechargeWallet: React.FC<RechargeWalletProps> = ({ onSuccess }) => {
+const RechargeWallet: React.FC<RechargeWalletProps> = ({ onSuccess }) => {
   const { isLoading, alert, register, errors, handleSubmit, onSubmit, setAlert } = ucRechargeWallet({ onSuccess });
 
   return (
@@ -75,3 +73,5 @@ export const RechargeWallet: React.FC<RechargeWalletProps> = ({ onSuccess }) => 
     </Card>
   );
 };
+
+export default RechargeWallet;

@@ -9,7 +9,7 @@ export interface GetBalanceProps {
   onBalanceRetrieved?: (balance: number) => void;
 }
 
-export const GetBalance: React.FC<GetBalanceProps> = ({ onBalanceRetrieved }) => {
+const GetBalance: React.FC<GetBalanceProps> = ({ onBalanceRetrieved }) => {
   const {
     isLoading,
     alert,
@@ -84,3 +84,5 @@ export const GetBalance: React.FC<GetBalanceProps> = ({ onBalanceRetrieved }) =>
     </Card>
   );
 };
+
+export default GetBalance;
