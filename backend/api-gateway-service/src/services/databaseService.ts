@@ -56,10 +56,6 @@ export const createDatabaseService = (): DatabaseService => {
 
     async getBalance(data: GetBalanceRequest): Promise<ApiResponse> {
       const cacheKey = `balance:${data.document}`;
-      const cached = await redisClient.get(cacheKey);
-      if (cached) {
-        return JSON.parse(cached);
-      }
       try {
         const response = await apiClient.get('/api/wallet/balance', {
           params: data

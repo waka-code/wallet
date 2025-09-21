@@ -19,10 +19,6 @@ export const createWalletRepository = (): WalletRepository => ({
 
   async findByClientDocument(clientDocument: string): Promise<Wallet | null> {
     const cacheKey = `wallet:${clientDocument}`;
-    const cached = await redisClient.get(cacheKey);
-    if (cached) {
-      return JSON.parse(cached);
-    }
     const walletDoc = await WalletModel.findOne({ clientDocument });
     if (!walletDoc) return null;
     const wallet: Wallet = {
@@ -32,7 +28,7 @@ export const createWalletRepository = (): WalletRepository => ({
       createdAt: walletDoc.createdAt,
       updatedAt: walletDoc.updatedAt
     };
-  await redisClient.set(cacheKey, JSON.stringify(wallet), { EX: 20 });
+    await redisClient.set(cacheKey, JSON.stringify(wallet), { EX: 20 });
     return wallet;
   },
 
