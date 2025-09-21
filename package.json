@@ -6,13 +6,10 @@
   "workspaces": [
     "backend/database-service",
     "backend/api-gateway-service",
+    "backend/shared",
     "frontend"
   ],
   "scripts": {
-    "install:api": "cd backend/api-gateway-service && npm install",
-    "install:db": "cd backend/database-service && npm install",
-    "install:shared": "cd backend/shared && npm install",
-    "install:frontend": "cd frontend && npm install",
     "build": "npm run build:shared && npm run build:backend && npm run build:frontend",
     "build:shared": "cd backend/shared && npm run build",
     "build:backend": "cd backend/database-service && npm run build && cd ../api-gateway-service && npm run build",
