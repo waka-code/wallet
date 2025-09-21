@@ -32,7 +32,7 @@ export const createWalletRepository = (): WalletRepository => ({
       createdAt: walletDoc.createdAt,
       updatedAt: walletDoc.updatedAt
     };
-  await redisClient.set(cacheKey, JSON.stringify(wallet), { EX: 60 });
+  await redisClient.set(cacheKey, JSON.stringify(wallet), { EX: 20 });
     return wallet;
   },
 
