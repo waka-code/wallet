@@ -22,7 +22,7 @@ export const CreatePayment: React.FC<CreatePaymentProps> = ({ onPaymentCreated }
   } = ucCreatePayment({ onPaymentCreated });
 
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <CreditCard className="h-5 w-5" />
@@ -87,7 +87,7 @@ export const CreatePayment: React.FC<CreatePaymentProps> = ({ onPaymentCreated }
 
           <Button
             type="submit"
-            variant="primary"
+            variant="secondary"
             loading={isLoading}
             className="w-full"
           >

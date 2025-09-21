@@ -15,7 +15,7 @@ export const RechargeWallet: React.FC<RechargeWalletProps> = ({ onSuccess }) => 
   const { isLoading, alert, register, errors, handleSubmit, onSubmit, setAlert } = ucRechargeWallet({ onSuccess });
 
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Plus className="h-5 w-5" />
@@ -64,7 +64,7 @@ export const RechargeWallet: React.FC<RechargeWalletProps> = ({ onSuccess }) => 
           />
           <Button
             type="submit"
-            variant="success"
+            variant="secondary"
             loading={isLoading}
             className="w-full"
           >

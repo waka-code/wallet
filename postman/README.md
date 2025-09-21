@@ -88,10 +88,11 @@ For payment confirmation emails to work, configure email settings in:
 
 Set the following variables:
 ```
-EMAIL_HOST=your-smtp-host
-EMAIL_PORT=587
-EMAIL_USER=your-email@domain.com
-EMAIL_PASS=your-email-password
+> ⚠️ **IMPORTANTE**  
+> Este proyecto corresponde a una prueba técnica y no incluye una suscripción activa a Resend para el envío de correos electrónicos a cualquier destinatario.  
+> Si deseas probar la funcionalidad de envío de correos con tu propia dirección (o la de otra persona), deberás crear una cuenta gratuita en [Resend](https://resend.com), generar una API Key y actualizar el valor de `API_KEY` en el archivo `.env` ubicado en `backend/database-service`.  
+> **Sin este paso, la funcionalidad de envío de correos no estará disponible.**
+>
 ```
 
 ## Troubleshooting

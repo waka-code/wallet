@@ -22,7 +22,7 @@ export const GetBalance: React.FC<GetBalanceProps> = ({ onBalanceRetrieved }) =>
   } = ucGetBalance({ onBalanceRetrieved });
 
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Search className="h-5 w-5" />
@@ -73,7 +73,7 @@ export const GetBalance: React.FC<GetBalanceProps> = ({ onBalanceRetrieved }) =>
 
           <Button
             type="submit"
-            variant="primary"
+            variant="secondary"
             loading={isLoading}
             className="w-full"
           >

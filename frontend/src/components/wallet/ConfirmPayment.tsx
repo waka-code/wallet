@@ -10,9 +10,9 @@ export interface ConfirmPaymentProps {
   onPaymentConfirmed?: (newBalance: number) => void;
 }
 
-export const ConfirmPayment: React.FC<ConfirmPaymentProps> = ({ 
+export const ConfirmPayment: React.FC<ConfirmPaymentProps> = ({
   initialSessionId,
-  onPaymentConfirmed 
+  onPaymentConfirmed
 }) => {
 
   const {
@@ -27,7 +27,7 @@ export const ConfirmPayment: React.FC<ConfirmPaymentProps> = ({
   } = ucConfirmPayment({ initialSessionId, onPaymentConfirmed });
 
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <CheckCircle2 className="h-5 w-5" />
@@ -92,7 +92,7 @@ export const ConfirmPayment: React.FC<ConfirmPaymentProps> = ({
 
           <Button
             type="submit"
-            variant="success"
+            variant="secondary"
             loading={isLoading}
             className="w-full"
           >

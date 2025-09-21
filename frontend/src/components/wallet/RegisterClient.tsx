@@ -23,7 +23,7 @@ export const RegisterClient: React.FC<RegisterClientProps> = ({ onSuccess }) => 
   } = ucRegisterClient({ onSuccess });
 
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <UserPlus className="h-5 w-5" />
@@ -80,9 +80,9 @@ export const RegisterClient: React.FC<RegisterClientProps> = ({ onSuccess }) => 
 
           <Button
             type="submit"
-            variant="primary"
+            variant="secondary"
             loading={isLoading}
-            className="w-full"
+            className="bg-primary-600 hover:bg-primary-700 w-full mt-2 cursor-pointer"
           >
             Register Client
           </Button>
