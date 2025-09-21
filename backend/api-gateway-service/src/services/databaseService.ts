@@ -8,6 +8,7 @@ import {
   ApiResponse
 } from '../presentation/schemas/validationSchemas';
 import { DatabaseService } from '../interface/IDatabaseService';
+import { redisClient } from '@epayco/shared-types';
 
 
 export const createDatabaseService = (): DatabaseService => {
@@ -54,10 +55,16 @@ export const createDatabaseService = (): DatabaseService => {
     },
 
     async getBalance(data: GetBalanceRequest): Promise<ApiResponse> {
+      const cacheKey = `balance:${data.document}`;
+      const cached = await redisClient.get(cacheKey);
+      if (cached) {
+        return JSON.parse(cached);
+      }
       try {
         const response = await apiClient.get('/api/wallet/balance', {
           params: data
         });
+        await redisClient.set(cacheKey, JSON.stringify(response.data), { EX: 86400 });
         return response.data;
       } catch (error) {
         throw error;

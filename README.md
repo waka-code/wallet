@@ -126,12 +126,6 @@ wallet/
 
 - Utiliza los archivos de la carpeta `postman/` para importar las colecciones y ambientes en Postman.
 
-## Estructura de Carpetas
-
-- **backend/api-gateway-service/src/presentation/controllers**: Controladores para clientes, pagos y billetera.
-- **backend/database-service/src/application/useCases**: Casos de uso para operaciones principales.
-- **frontend/src/components/wallet**: Componentes React para cada operación de la billetera.
-
 ## Tecnologías
 
 - Node.js, Express, TypeScript
@@ -140,8 +134,38 @@ wallet/
 
 ---
 
-## Variables de Entorno
+## Arquitectura y Patrones de Diseño
 
-Cada microservicio requiere su propio archivo `.env`. Usa los archivos `.env.example` como referencia.
+### Backend
+
+El backend está compuesto por microservicios independientes, cada uno implementado bajo la **arquitectura hexagonal (Ports and Adapters)**.  
+Esta arquitectura separa el núcleo de negocio (dominio) de las dependencias externas, facilitando la escalabilidad, el mantenimiento y las pruebas.
+
+Cada servicio contiene las siguientes capas principales:
+- **Domain (Entidad y Puertos):** Define las reglas de negocio y las interfaces (puertos) que conectan el dominio con el exterior.
+- **Application (Casos de Uso):** Orquesta la lógica de negocio a través de casos de uso.
+- **Infrastructure (Adapters y Repositories):** Implementa los adaptadores para interactuar con bases de datos, servicios externos, etc.
+- **Presentation (Controllers y Schemas):** Expone la API y valida las entradas.
+
+**Patrones de diseño utilizados:**
+- **Inyección de dependencias:** Para desacoplar componentes y facilitar el testeo.
+- **Repository Pattern:** Para abstraer el acceso a datos.
+- **DTO (Data Transfer Object):** Para estructurar la información entre capas.
+- **Factory y Singleton:** En algunos servicios para la gestión de instancias.
+
+### Frontend
+
+El frontend está desarrollado en **React** y sigue una arquitectura basada en **componentes funcionales** y **hooks personalizados** para la gestión de lógica y estado.
+
+Principales características:
+- **Separación de UI y lógica:** Los componentes de UI están desacoplados de la lógica de negocio, que se gestiona mediante hooks.
+- **Patrón Container-Presenter:** Los componentes contenedores gestionan la lógica y los presentadores se encargan de la visualización.
+- **Custom Hooks:** Para operaciones de API, manejo de formularios y estado.
+- **Atomic Design:** La estructura de carpetas sugiere la organización de componentes en niveles (UI, hooks, wallet).
+
+**Patrones de diseño utilizados:**
+- **Hook Pattern:** Para reutilizar lógica de estado y efectos.
+- **Presentational/Container Pattern:** Para separar lógica y presentación.
+- **Single Responsibility Principle:** Cada componente/hook tiene una única responsabilidad.
 
 ---
