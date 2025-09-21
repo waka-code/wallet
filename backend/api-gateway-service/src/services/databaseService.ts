@@ -64,7 +64,7 @@ export const createDatabaseService = (): DatabaseService => {
         const response = await apiClient.get('/api/wallet/balance', {
           params: data
         });
-        await redisClient.set(cacheKey, JSON.stringify(response.data), { EX: 86400 });
+        await redisClient.set(cacheKey, JSON.stringify(response.data), { EX: 60 });
         return response.data;
       } catch (error) {
         throw error;
