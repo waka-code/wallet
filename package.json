@@ -10,6 +10,7 @@
     "frontend"
   ],
   "scripts": {
+    "setup": "npm install && npm run build && npm run start",
     "build": "npm run build:shared && npm run build:backend && npm run build:frontend",
     "build:shared": "cd backend/shared && npm run build",
     "build:backend": "cd backend/database-service && npm run build && cd ../api-gateway-service && npm run build",
@@ -24,7 +25,6 @@
     "lint": "npm run lint:backend && npm run lint:frontend",
     "lint:backend": "cd backend/database-service && npm run lint && cd ../api-gateway-service && npm run lint",
     "lint:frontend": "cd frontend && npm run lint",
-    "start:dev": "concurrently \"npm run docker:build\" \"npm run docker:up\"",
     "clean": "npm run clean:backend && npm run clean:frontend",
     "clean:backend": "cd backend/database-service && rmdir /s /q node_modules dist && cd ../api-gateway-service && rmdir /s /q node_modules dist",
     "clean:frontend": "cd frontend && rmdir /s /q node_modules dist",

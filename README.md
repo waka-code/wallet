@@ -5,7 +5,23 @@
 > Ten en cuenta que la versión gratuita solo permite enviar correos a tu propia dirección, mientras que la versión paga permite enviarlos a cualquier destinatario.  
 > **Sin este paso, la funcionalidad de envío de correos no estará disponible.**
 
+> 🎥 Mira el video explicativo aquí: [Guía en Loom](https://www.loom.com/share/b67472950a7b49b1ac85d12654459c31?sid=4d3b9fdf-3097-4ef0-a112-c832b5df30b8)
+
 > **Pasos esenciales para ejecutar el proyecto localmente:**
+>
+> 🚀 **Recomendado:**  
+> Ejecuta el siguiente comando único para instalar dependencias, compilar y arrancar el proyecto automáticamente:
+>
+> ```powershell
+> npm run setup
+> ```
+>
+> Este comando simplifica el proceso y asegura que todo esté listo en tu entorno local.
+>
+> ---
+>
+> 🛠️ **Alternativa paso a paso:**  
+> Si prefieres realizar cada paso manualmente, sigue este orden:
 >
 > 1. Instala las dependencias:
 >    ```powershell
