@@ -1,69 +1,84 @@
-# React + TypeScript + Vite
+# Virtual Wallet Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es el frontend de la billetera virtual, desarrollado con **React**, **TypeScript** y **Vite**. Permite a los usuarios registrar clientes, recargar billetera, realizar pagos con confirmación por token y consultar el saldo, interactuando con el API Gateway del backend.
 
-Currently, two official plugins are available:
+## Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Registro de clientes
+- Recarga de billetera
+- Pago con confirmación por token (correo electrónico)
+- Consulta de saldo
+- Validaciones y manejo de errores
+- Interfaz moderna y responsiva
 
-## Expanding the ESLint configuration
+## Estructura del Proyecto
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── components/
+│   ├── hooks/           # Hooks para operaciones de la billetera
+│   ├── ui/              # Componentes de interfaz (Button, Card, Alert, etc.)
+│   └── wallet/          # Vistas para cada operación (Registrar, Recargar, Pagar, Consultar)
+├── schemas/             # Validaciones de formularios
+├── services/            # Comunicación con el API Gateway
+├── types/               # Tipos y modelos de datos
+├── utils/               # Utilidades y helpers
+├── App.tsx              # Componente principal
+└── main.tsx             # Punto de entrada
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Requisitos
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Node.js >= 16.x
+- npm >= 8.x
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Instalación
+
+1. Clona el repositorio y accede a la carpeta del frontend:
+
+   ```powershell
+   git clone <URL_DEL_REPOSITORIO>
+   cd wallet/frontend
+   ```
+
+2. Instala las dependencias:
+
+   ```powershell
+   npm install
+   ```
+
+## Ejecución
+
+1. Inicia la aplicación en modo desarrollo:
+
+   ```powershell
+   npm run dev
+   ```
+
+2. Accede a la app en [http://localhost:5173](http://localhost:5173)
+
+## Configuración
+
+- Puedes configurar variables de entorno en el archivo `.env` para definir la URL del API Gateway y otros parámetros.
+
+## Pruebas y Lint
+
+- Para ejecutar el linter y mantener la calidad del código:
+
+   ```powershell
+   npm run lint
+   ```
+
+## Tecnologías
+
+- React
+- TypeScript
+- Vite
+- ESLint
+
+## Notas
+
+- Asegúrate de que el backend esté corriendo antes de usar el frontend.
+- Para pruebas manuales de la API, consulta la colección de Postman incluida en el repositorio.
+
+---
