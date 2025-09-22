@@ -54,6 +54,15 @@ export const createDatabaseService = (): DatabaseService => {
       }
     },
 
+    // Nota: En producción, la integración con Redis debe ser más robusta.
+    // Aquí solo se guarda el resultado en caché después de consultar la base de datos,
+    // pero no se aprovecha la lectura desde Redis ni se gestiona la expiración, invalidación o errores.
+    // Una implementación correcta debería:
+    // 1. Consultar primero en Redis antes de ir a la base de datos.
+    // 2. Actualizar/invalidad la caché cuando cambie el saldo o los datos.
+    // 3. Manejar posibles fallos de conexión con Redis.
+    // 4. Definir una política de expiración adecuada.
+    // 5. Evitar inconsistencias entre la caché y la base de datos.
     async getBalance(data: GetBalanceRequest): Promise<ApiResponse> {
       const cacheKey = `balance:${data.document}`;
       try {

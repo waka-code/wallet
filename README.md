@@ -169,3 +169,142 @@ Principales características:
 - **Single Responsibility Principle:** Cada componente/hook tiene una única responsabilidad.
 
 ---
+
+## Endpoints REST
+
+A continuación se describen los endpoints principales del sistema, la estructura de los datos y las respuestas estándar.
+
+---
+
+### 1. Registro de Cliente
+
+- **URL:** `/api/client/register`
+- **Método:** `POST`
+- **Body (JSON):**
+  ```json
+  {
+    "document": "string",
+    "name": "string",
+    "email": "string",
+    "phone": "string"
+  }
+  ```
+- **Respuesta:**
+  ```json
+  {
+    "code": 0,
+    "message": "Cliente registrado exitosamente",
+    "data": { "clientId": "string" }
+  }
+  ```
+
+---
+
+### 2. Recarga de Billetera
+
+- **URL:** `/api/wallet/recharge`
+- **Método:** `POST`
+- **Body (JSON):**
+  ```json
+  {
+    "document": "string",
+    "phone": "string",
+    "amount": number
+  }
+  ```
+- **Respuesta:**
+  ```json
+  {
+    "code": 0,
+    "message": "Recarga exitosa",
+    "data": { "balance": number }
+  }
+  ```
+
+---
+
+### 3. Pagar (Generar Token de Compra)
+
+- **URL:** `/api/payment/create`
+- **Método:** `POST`
+- **Body (JSON):**
+  ```json
+  {
+    "document": "string",
+    "phone": "string",
+    "amount": number
+  }
+  ```
+- **Respuesta:**
+  ```json
+  {
+    "code": 0,
+    "message": "Token enviado al correo",
+    "data": {
+      "sessionId": "string"
+    }
+  }
+  ```
+
+---
+
+### 4. Confirmar Pago
+
+- **URL:** `/api/payment/confirm`
+- **Método:** `POST`
+- **Body (JSON):**
+  ```json
+  {
+    "sessionId": "string",
+    "token": "string"
+  }
+  ```
+- **Respuesta:**
+  ```json
+  {
+    "code": 0,
+    "message": "Pago confirmado y saldo descontado",
+    "data": { "balance": number }
+  }
+  ```
+
+---
+
+### 5. Consultar Saldo
+
+- **URL:** `/api/wallet/balance`
+- **Método:** `POST`
+- **Body (JSON):**
+  ```json
+  {
+    "document": "string",
+    "phone": "string"
+  }
+  ```
+- **Respuesta:**
+  ```json
+  {
+    "code": 0,
+    "message": "Consulta exitosa",
+    "data": { "balance": number }
+  }
+  ```
+
+---
+
+### Estructura de Respuesta
+
+Todas las respuestas siguen la estructura:
+```json
+{
+  "code": number,
+  "message": "string",
+  "data": object | null
+}
+```
+
+- `code`: 0 para éxito, otro valor para error.
+- `message`: Mensaje descriptivo.
+- `data`: Información adicional (opcional).
+
+---
